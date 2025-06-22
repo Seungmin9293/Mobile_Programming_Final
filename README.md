@@ -1,0 +1,2 @@
+#코드파일은 app -> src -> main -> java/com/example/mobile(KT파일) -> res(레이아웃)에 있습니다.
+#이미지 및 음악은 저장소 Public시 공개목적의 배포이기에 제외하였습니다
