@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!--메인 콘텐츠 영역 -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F0EBF8">
+
+        <!--상단 툴바: 앱 이름 및 알림 버튼 포함 -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#31ACB1"
+            android:elevation="4dp"
+            android:backgroundTint="#2196F3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--툴바 내 앱 이름 텍스트 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ExamPlan"
+                android:layout_gravity="start"
+                android:textSize="25sp"
+                android:padding="10dp"
+                android:textColor="#FFFFFFFF"
+                android:textStyle="bold"/>
+
+            <!--툴바 내 알림 버튼 -->
+            <ImageButton
+                android:id="@+id/addbtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/al"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="알람"
+                app:tint="#FFFFFFFF" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--즐겨찾기 목록 RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view_favorites"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:id="@+id/text_favorites_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="추가된 즐겨찾기가 없습니다"
+            android:textSize="16sp"
+            android:textColor="#777"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintVertical_bias="0.3"/>
+
+        <!-- 하단 앱 바: 즐겨찾기/홈/마이페이지 이동 버튼 -->
+        <LinearLayout
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="#31ACB1"
+            android:backgroundTint="#2196F3"
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center">
+
+            <!-- 즐겨찾기 버튼 -->
+            <ImageButton
+                android:id="@+id/star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/star"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="스타"
+                android:scaleType="centerInside"/>
+
+            <!-- 홈 버튼 -->
+            <ImageButton
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/home_rounded"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="홈"
+                android:scaleType="centerInside"/>
+
+            <!-- 마이페이지 버튼 -->
+            <ImageButton
+                android:id="@+id/person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/person"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="마이페이지"
+                android:scaleType="centerInside"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!-- 드로어 -->
+    <LinearLayout
+        android:id="@+id/activity_exam_view_notification_drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="100dp">
+
+        <!-- 알림 드로어 상단 텍스트 -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:gravity="center_horizontal"/>
+
+        <!-- 알림 목록 RecyclerView -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/re_noti"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <!-- 알림 없을 때 텍스트 -->
+        <TextView
+            android:id="@+id/renoti_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림 없음."
+            android:gravity="center"
+            android:visibility="gone"
+            android:padding="20dp"/>
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

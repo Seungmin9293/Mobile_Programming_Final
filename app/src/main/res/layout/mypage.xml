@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_main_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F0EBF8">
+
+        <!-- 툴바 -->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_mypage"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#31ACB1"
+            android:elevation="4dp"
+            android:backgroundTint="#2196F3"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!--마이페이지 제목으로 사용-->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="마이페이지"
+                android:textSize="20sp"
+                android:textColor="@android:color/white"
+                android:padding="10dp"
+                android:textStyle="bold"/>
+            <ImageButton
+                android:id="@+id/addbtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/al"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="알림"
+                app:tint="#FFFFFFFF" />
+        </androidx.appcompat.widget.Toolbar>
+
+
+        <!-- 하단 바 -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:padding="24dp"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_mypage"
+            app:layout_constraintVertical_bias="1.0">
+
+            <!--퍼미션 받기-->
+            <Button
+                android:id="@+id/btn_request_permission"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#2196F3"
+                android:text="알림 권한 요청" />
+            <!--앱 버전 텍스트-->
+            <TextView
+                android:id="@+id/text_app_version"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="앱 버전: 1.1 2025/06/22"
+                android:textSize="16sp" />
+             <!--마이페이지 이미지 출력-->
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="435dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="32dp"
+                android:src="@drawable/mypagebook"/>
+        </LinearLayout>
+        <!--하단 앱바-->
+        <LinearLayout
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="#31ACB1"
+            android:backgroundTint="#2196F3"
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/star"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="스타"
+                android:scaleType="centerInside"/>
+
+            <ImageButton
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/home_rounded"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="홈"
+                android:scaleType="centerInside"/>
+
+            <ImageButton
+                android:id="@+id/person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/person"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="마이페이지"
+                android:scaleType="centerInside"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_exam_view_notification_drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="100dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:gravity="center_horizontal"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/re_noti"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            />
+
+        <TextView
+            android:id="@+id/renoti_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림 없음."
+            android:gravity="center"
+            android:visibility="gone"
+            android:padding="20dp"/>
+
+    </LinearLayout>
+</androidx.drawerlayout.widget.DrawerLayout>

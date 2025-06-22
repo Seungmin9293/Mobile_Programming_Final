@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="48dp"
+    android:background="?attr/selectableItemBackgroundBorderless">
+
+    <!--날짜 숫자 표시용 텍스트-->
+    <TextView
+        android:id="@+id/text_day_cell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="14sp"
+        android:textColor="@android:color/black"
+        android:text="1"/>
+
+    <!--일정 있는 날 표시 점, visibility 속성 기본 숨김-->
+    <View
+        android:id="@+id/view_schedule_indicator"
+        android:layout_width="6dp"
+        android:layout_height="6dp"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/shape_circle_green"
+        android:visibility="gone" />
+</FrameLayout>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimerActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F0EBF8">
+
+        <!--툴바-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_timer"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:backgroundTint="#2196F3"
+            android:background="#31ACB1"
+            android:elevation="4dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="타이머"
+                android:textColor="@android:color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_gravity="center" />
+            <ImageButton
+                android:id="@+id/addbtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/al"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="알람"
+                app:tint="#FFFFFFFF" />
+        </androidx.appcompat.widget.Toolbar>
+
+        <!--스크롤뷰-->
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_timer"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+                <TextView
+                    android:id="@+id/text_study_time_mode"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Study Time"
+                    android:background="@drawable/small_radius"
+                    android:textColor="#000000"
+                    android:paddingStart="24dp"
+                    android:paddingEnd="24dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <!--원형 타이머-->
+                <FrameLayout
+                    android:id="@+id/frame_timer_circle"
+                    android:layout_width="280dp"
+                    android:layout_height="280dp"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/circle"
+                    app:layout_constraintTop_toBottomOf="@id/text_study_time_mode"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <!--실제 타이머 표시 Chronometer-->
+                    <Chronometer
+                        android:id="@+id/text_timer_display"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00:00:00"
+                        android:textSize="56sp"
+                        android:textColor="#000000"
+                        android:textStyle="bold"
+                        android:layout_gravity="center"/>
+                </FrameLayout>
+
+                <!--타이머 버튼 -->
+                <LinearLayout
+                    android:id="@+id/layout_timer_controls"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="24dp"
+                    android:gravity="center"
+                    app:layout_constraintTop_toBottomOf="@id/frame_timer_circle"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <!--정지 버튼 -->
+                    <LinearLayout
+                        android:id="@+id/button_stop_timer_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:layout_marginEnd="24dp">
+                        <ImageButton
+                            android:id="@+id/button_stop_timer"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
+                            android:src="@drawable/stop"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:scaleType="fitCenter"
+                            android:contentDescription="정지"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="정지"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+                    </LinearLayout>
+
+                    <!--시작 버튼-->
+                    <LinearLayout
+                        android:id="@+id/button_start_timer_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:layout_marginStart="24dp"
+                        android:layout_marginEnd="24dp">
+
+                        <ImageButton
+                            android:id="@+id/button_start_timer"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            android:padding="1dp"
+                            android:layout_marginLeft="6dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="시작"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/play"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="시작"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+                    </LinearLayout>
+
+                    <!--저장 버튼-->
+                    <LinearLayout
+                        android:id="@+id/button_save_timer_record_container"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:padding="8dp"
+                        android:layout_marginStart="24dp">
+                        <ImageButton
+                            android:id="@+id/button_save_timer_record"
+                            android:layout_width="70dp"
+                            android:layout_height="70dp"
+                            android:src="@drawable/save"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:scaleType="fitCenter"
+                            android:contentDescription="저장"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="저장"
+                            android:textSize="16sp"
+                            android:textColor="#333333"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--최근 기록 표시 -->
+                <LinearLayout
+                    android:id="@+id/layout_recent_record"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/small_radius"
+                    android:padding="16dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/layout_timer_controls"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <TextView
+                        android:id="@+id/text_recent_record_label"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="최근기록"
+                        android:textSize="16sp"
+                        android:textColor="#555555"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/text_recent_record_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="00시 00분 00초"
+                        android:textSize="18sp"
+                        android:textColor="#333333"
+                        android:layout_marginTop="8dp"/>
+                </LinearLayout>
+
+                <!--음악 듣기 스위치 -->
+                <Switch
+                    android:id="@+id/switch_music"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="음악 듣기"
+                    android:textSize="23sp"
+                    android:layout_marginTop="15dp"
+                    app:layout_constraintTop_toBottomOf="@id/text_study_time_mode"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+                <!--스터디 페이지 이동-->
+                <Button
+                    android:id="@+id/button_study_diary"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="공부 다이어리"
+                    android:background="@drawable/small_radius"
+                    android:textColor="@android:color/black"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    app:layout_constraintTop_toBottomOf="@id/layout_recent_record"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+
+        <!--하단 앱 바 -->
+        <LinearLayout
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:background="#31ACB1"
+            android:backgroundTint="#2196F3"
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center">
+
+            <!--즐겨찾기 버튼-->
+            <ImageButton
+                android:id="@+id/star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/star"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="스타"
+                android:scaleType="centerInside"/>
+
+            <!--홈 버튼 -->
+            <ImageButton
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/home_rounded"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="홈"
+                android:scaleType="centerInside"/>
+
+            <!--마이페이지 버튼 -->
+            <ImageButton
+                android:id="@+id/person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/person"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="마이페이지"
+                android:scaleType="centerInside"/>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--드로어-->
+    <LinearLayout
+        android:id="@+id/activity_exam_view_notification_drawer"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="100dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:gravity="center_horizontal"/>
+
+        <!--알림 RecyclerView-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/re_noti"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+
+        <!--알림 없을 때 메시지-->
+        <TextView
+            android:id="@+id/renoti_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림 없음."
+            android:gravity="center"
+            android:visibility="gone"
+            android:padding="20dp"/>
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main_drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StudyActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F0EBF8">
+
+        <!--상단툴바-->
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="0dp"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#31ACB1"
+            android:elevation="4dp"
+            android:backgroundTint="#2196F3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="스터디 페이지"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="#FFF"
+                android:paddingStart="10dp"
+                tools:ignore="RtlSymmetry" />
+
+            <ImageButton
+                android:id="@+id/addbtn1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:src="@drawable/al"
+                android:padding="16dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="알림"
+                app:tint="#FFF"/>
+        </androidx.appcompat.widget.Toolbar>
+         <!--스크롤뷰-->
+        <ScrollView
+            android:id="@+id/scroll_view_study"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
+            app:layout_constraintBottom_toTopOf="@id/bottom_navigation_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="16dp">
+                   <!--달력영역 padding 설정으로 간격 elevation으로 다른 뷰보다 떠있는 효과 -->
+                <LinearLayout
+                    android:id="@+id/calendar_card_section"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@drawable/small_radius"
+                    android:elevation="2dp"
+                    android:padding="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/text_calendar_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="달력"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="12dp"/>
+                     <!--캘린더 뷰페이저 2사용-->
+                    <androidx.viewpager2.widget.ViewPager2
+                        android:id="@+id/view_pager_calendar"
+                        android:layout_width="match_parent"
+                        android:layout_height="300dp"/>
+                </LinearLayout>
+                  <!--타이머 이동 -->
+                <LinearLayout
+                    android:id="@+id/btn_timer"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:orientation="horizontal"
+                    android:background="@drawable/small_radius"
+                    android:elevation="2dp"
+                    android:gravity="center_vertical"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/calendar_card_section" android:layout_marginTop="16dp">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/clock"
+                        app:tint="#000"
+                        android:contentDescription="타이머 아이콘"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="타이머"
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        android:gravity="center_horizontal"/>
+                </LinearLayout>
+                   <!--스터디 목록 표시 layout_constraintTop_toBottomOf 으로 타이머버튼 아래로-->
+                <LinearLayout
+                    android:id="@+id/study_task_list_section"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/small_radius"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/btn_timer">
+
+                    <TextView
+                        android:id="@+id/text_study_task_list_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginBottom="12dp"
+                        android:text="오늘의 스터디 목록"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/text_recent_record_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="오늘의 공부 기록: 00:00:00"
+                        android:textSize="18sp"
+                        android:textColor="#000"
+                        app:layout_constraintTop_toBottomOf="@id/btn_timer"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="16dp"
+                        android:gravity="center"/>
+
+                    <!--스터디목록 반복구조-->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/study_task_item_layout_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="12dp">
+                        <ImageButton
+                            android:id="@+id/button_action_study_task_item_1"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="새 스터디 항목 추가"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/remove"
+                            app:tint="#FF0000"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+                        <ImageButton
+                            android:id="@+id/button_save_study_task_item_1"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="스터디 항목 1 완료/저장"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/save"
+                            app:tint="#000"
+                            app:layout_constraintEnd_toStartOf="@id/button_action_study_task_item_1"
+                            app:layout_constraintTop_toTopOf="@id/button_action_study_task_item_1"
+                            app:layout_constraintBottom_toBottomOf="@id/button_action_study_task_item_1" />
+                        <TextView
+                            android:id="@+id/text_study_task_item_1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text=""
+                            android:hint="스터디 내용 입력 (클릭하여 수정)"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:minHeight="48dp"
+                            android:gravity="center_vertical"
+                            app:layout_constraintEnd_toStartOf="@id/button_save_study_task_item_1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/button_save_study_task_item_1"
+                            app:layout_constraintBottom_toBottomOf="@id/button_save_study_task_item_1" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- 스터디2 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/study_task_item_layout_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="12dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+                        <ImageButton
+                            android:id="@+id/button_action_study_task_item_2"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="스터디 항목 2 삭제"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/remove"
+                            app:tint="#FF0000"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+                        <ImageButton
+                            android:id="@+id/button_save_study_task_item_2"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="스터디 항목 2 완료/저장"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/save"
+                            app:tint="#000"
+                            app:layout_constraintEnd_toStartOf="@id/button_action_study_task_item_2"
+                            app:layout_constraintTop_toTopOf="@id/button_action_study_task_item_2"
+                            app:layout_constraintBottom_toBottomOf="@id/button_action_study_task_item_2" />
+                        <TextView
+                            android:id="@+id/text_study_task_item_2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text=""
+                            android:hint="스터디 내용 입력 (클릭하여 수정)"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:minHeight="48dp"
+                            android:gravity="center_vertical"
+                            app:layout_constraintEnd_toStartOf="@id/button_save_study_task_item_2"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/button_save_study_task_item_2"
+                            app:layout_constraintBottom_toBottomOf="@id/button_save_study_task_item_2" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!--초기값 visibility설정으로 안보이게 설정 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/study_task_item_layout_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="8dp"
+                        android:paddingVertical="12dp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        tools:visibility="visible">
+                        <ImageButton
+                            android:id="@+id/button_action_study_task_item_3"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="스터디 항목 3 삭제"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/remove"
+                            app:tint="#FF0000"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent" />
+                        <ImageButton
+                            android:id="@+id/button_save_study_task_item_3"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="?attr/selectableItemBackgroundBorderless"
+                            android:contentDescription="스터디 항목 3 완료/저장"
+                            android:scaleType="centerInside"
+                            android:src="@drawable/save"
+                            app:tint="#000"
+                            app:layout_constraintEnd_toStartOf="@id/button_action_study_task_item_3"
+                            app:layout_constraintTop_toTopOf="@id/button_action_study_task_item_3"
+                            app:layout_constraintBottom_toBottomOf="@id/button_action_study_task_item_3" />
+                        <TextView
+                            android:id="@+id/text_study_task_item_3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:text=""
+                            android:hint="스터디 내용 입력 (클릭하여 수정)"
+                            android:textColor="@android:color/black"
+                            android:textSize="16sp"
+                            android:minHeight="48dp"
+                            android:gravity="center_vertical"
+                            app:layout_constraintEnd_toStartOf="@id/button_save_study_task_item_3"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="@id/button_save_study_task_item_3"
+                            app:layout_constraintBottom_toBottomOf="@id/button_save_study_task_item_3" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+           <!--하단 앱바-->
+        <LinearLayout
+            android:id="@+id/bottom_navigation_bar"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:orientation="horizontal"
+            android:backgroundTint="#2196F3"
+            android:background="#31ACB1"
+            android:elevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center">
+
+            <ImageButton
+                android:id="@+id/star"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:src="@drawable/star"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="스타"
+                android:scaleType="centerInside"/>
+
+            <ImageButton
+                android:id="@+id/home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/home_rounded"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="홈"
+                android:scaleType="centerInside"/>
+
+            <ImageButton
+                android:id="@+id/person"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/person"
+                android:padding="16dp"
+                app:tint="#FFFFFFFF"
+                android:contentDescription="마이페이지"
+                android:scaleType="centerInside"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_study_notification_drawer" android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:visibility="gone"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="100dp">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="알림"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:padding="16dp"
+            android:background="#EEEEEE"
+            android:gravity="center_horizontal"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/study_activity_recycler_view_notifications" android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        <TextView
+            android:id="@+id/study_activity_text_no_notifications" android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="새로운 알림이 없습니다."
+            android:gravity="center"
+            android:padding="20dp"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
