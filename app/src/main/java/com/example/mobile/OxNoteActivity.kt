@@ -14,7 +14,7 @@ import java.util.*
 
 class OxNoteActivity : StarBaseActivity() {
 
-    // ───────── 1. 변수 정의 ─────────
+    
     private lateinit var drawerLayout: DrawerLayout           // 알림 드로어
     private lateinit var addForm: LinearLayout                // 오답 추가 폼
 
@@ -45,7 +45,7 @@ class OxNoteActivity : StarBaseActivity() {
     private lateinit var checkBoxes: List<CheckBox> //체크박스 8개
     private val pref by lazy { getSharedPreferences("oxnote", MODE_PRIVATE) }
 
-    // ───────── 2. 생명주기 ─────────
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.oxnote)
@@ -58,7 +58,7 @@ class OxNoteActivity : StarBaseActivity() {
         setupSearch()           //필터 검색
     }
 
-    // ───────── 3. 초기화 ─────────
+    
     private fun initViews() {
         // 모든 뷰 연결
         drawerLayout = findViewById(R.id.activity_main_drawer_layout)
@@ -98,7 +98,7 @@ class OxNoteActivity : StarBaseActivity() {
         }
     }
 
-    // ───────── 5. 오답 추가 폼 ─────────
+   
     private fun setupAddToggle() {
         btnFab.setOnClickListener {
             // 오답추가 보여주기/숨기기
@@ -130,7 +130,7 @@ class OxNoteActivity : StarBaseActivity() {
         }
     }
 
-    // ───────── 6. 오답 리스트 삽입 ─────────
+    
     private fun addMistakeList(title: String, exam: String, subject: String, date: String, stars: Int): Boolean {
         val slotIndex = itemIds.indexOfFirst {
             val title = findViewById<TextView>(
@@ -165,7 +165,7 @@ class OxNoteActivity : StarBaseActivity() {
 
     private fun itToIndex(itemId: Int): Int = itemIds.indexOf(itemId) + 1
 
-    // ───────── 7. 필터 검색 ─────────
+    // 필터 검색
     private fun setupSearch() {
         val options = arrayOf("전체", "중요도 ★4 이상", "중요도 ★3 이하")
         spinnerFilter.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options)
@@ -206,7 +206,7 @@ class OxNoteActivity : StarBaseActivity() {
         }
     }
 
-    // ───────── 8. 체크박스 초기화 ─────────
+    // 체크박스 초기화
     private fun CheckStates() {
         itemIds.forEachIndexed { idx, id ->
             clearSlotTexts(idx)
@@ -226,7 +226,7 @@ class OxNoteActivity : StarBaseActivity() {
         }
     }
 
-    // ───────── 9. 하단 버튼 ─────────
+    //하단 버튼
     private fun setupBottomBar() {
         btnStar.setOnClickListener {
             startActivity(Intent(this, BookMarkPageActivity::class.java))
@@ -240,7 +240,7 @@ class OxNoteActivity : StarBaseActivity() {
         }//마이페이지
     }
 
-    // ───────── 10. 뒤로가기 ─────────
+    
     override fun onBackPressed() {
         when {
             drawerLayout.isDrawerOpen(GravityCompat.END) -> drawerLayout.closeDrawer(GravityCompat.END)
