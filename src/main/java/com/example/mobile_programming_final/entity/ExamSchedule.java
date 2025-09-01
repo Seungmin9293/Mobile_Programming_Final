@@ -32,4 +32,16 @@ public class ExamSchedule {
         this.examDate = examDate;
         this.registrationDate = registrationDate;
     }
+
+    /**
+     * DTO -> 엔티티 상태 업데이트 메서드
+     * @param name 업데이트할 시험 이름
+     * @param examDate 업데이트할 시험 날짜
+     * @param registrationDate 업데이트할 등록 날짜
+     */
+    public void update(String name, LocalDate examDate, LocalDate registrationDate) {
+        this.name = name;
+        this.examDate = examDate;
+        this.registrationDate = registrationDate;
+    }
 }
