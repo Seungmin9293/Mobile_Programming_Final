@@ -66,7 +66,7 @@ ExamPlan은 학습자들이 시험 일정을 효율적으로 관리하고 공부
 
 -   **언어**: Java
 -   **프레임워크**: Spring Boot
--   **데이터베이스**: Spring Data JPA, H2 (또는 외부 DB)
+-   **데이터베이스**: Spring Data JPA
 -   **기타**: Lombok, Gradle
 ---
 
