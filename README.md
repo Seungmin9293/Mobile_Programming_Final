@@ -188,29 +188,6 @@ app/src/main/java/com/example/mobile/
 ## 📊 데이터 관리
 
 ### 데이터 흐름
--   **시험/학습 데이터**: 사용자가 앱에서 입력한 시험 및 학습 데이터는 **백엔드 서버 API**를 통해 데이터베이스에 영구적으로 저장됩니다.
+-   **시험/학습 데이터**: 사용자가 앱에서 입력한 시험 및 학습 데이터는 **백엔드 서버 API**를 통해 데이터베이스에 영구적으로 저장할 수 있습니다.
 -   **로컬 캐시/설정**: 앱의 설정, 즐겨찾기 등 간단한 데이터는 `SharedPreferences`를 사용하여 기기에 임시 저장할 수 있습니다.
 
-### 데이터 모델
-*(백엔드 DTO와 연동되는 데이터 구조)*
-
-```kotlin
-// ExamSchedule: 시험 일정 데이터
-data class ExamSchedule(
-    val id: Long?, // 백엔드에서 생성되는 ID
-    val name: String,
-    val examDate: String, // "YYYY-MM-DD" 형식의 문자열
-    val registrationDate: String // "YYYY-MM-DD" 형식의 문자열
-)
-
-// StudyTask: 학습 과제 데이터
-data class StudyTask(
-    val id: String?, // UUID 형식의 문자열
-    var text: String,
-    var isCompleted: Boolean,
-    val date: String // "YYYY-MM-DD" 형식의 문자열
-)
-````
-
-```
-```
