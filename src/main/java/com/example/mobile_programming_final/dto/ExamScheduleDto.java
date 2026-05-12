@@ -1,5 +1,6 @@
 package com.example.mobile_programming_final.dto;
 
+import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,13 +15,21 @@ public class ExamScheduleDto {
 
     private Long id;
 
-    @NotBlank(message = "시험 이름 필수 항목입니다.")
+    @NotBlank(message = "Exam name is required.")
     private String name;
 
-    @NotNull(message = "시험 날짜는 필수 항목입니다.")
-    @Future(message = "시험 날짜는 미래로 작성해야합니다.")
+    @NotNull(message = "Exam date is required.")
+    @Future(message = "Exam date must be in the future.")
     private LocalDate examDate;
 
-    @NotNull(message = "등록 날짜는 필수 항목입니다.")
+    @NotNull(message = "Registration date is required.")
     private LocalDate registrationDate;
+
+    @AssertTrue(message = "Registration date must be on or before the exam date.")
+    public boolean isDateRangeValid() {
+        if (examDate == null || registrationDate == null) {
+            return true;
+        }
+        return !registrationDate.isAfter(examDate);
+    }
 }

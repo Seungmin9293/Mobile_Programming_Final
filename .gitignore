@@ -35,4 +35,7 @@ out/
 
 ### VS Code ###
 .vscode/
-/src/main/resources/application.properties
+
+### Local-only application config ###
+/src/main/resources/application-local.properties
+/src/main/resources/application-*.local.properties
