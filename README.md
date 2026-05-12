@@ -1,4 +1,4 @@
-# ExamPlan - 시험 일정 관리 앱 (Full-Stack)
+# ExamPlan - 시험 일정 관리 앱
 
 > Spring Boot 백엔드와 연동하여 시험 일정과 학습을 체계적으로 관리하는 Android 앱
 
