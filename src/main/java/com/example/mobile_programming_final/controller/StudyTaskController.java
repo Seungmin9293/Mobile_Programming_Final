@@ -2,10 +2,18 @@ package com.example.mobile_programming_final.controller;
 
 import com.example.mobile_programming_final.dto.StudyTaskDto;
 import com.example.mobile_programming_final.service.StudyTaskService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.UUID;
@@ -17,13 +25,11 @@ public class StudyTaskController {
 
     private final StudyTaskService studyTaskService;
 
-
     @GetMapping
     public ResponseEntity<List<StudyTaskDto>> getAllStudyTasks() {
         List<StudyTaskDto> tasks = studyTaskService.getAllStudyTasks();
         return ResponseEntity.ok(tasks);
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<StudyTaskDto> getStudyTaskById(@PathVariable UUID id) {
@@ -32,18 +38,16 @@ public class StudyTaskController {
     }
 
     @PostMapping
-    public ResponseEntity<StudyTaskDto> createStudyTask(@RequestBody StudyTaskDto studyTaskDto) {
+    public ResponseEntity<StudyTaskDto> createStudyTask(@Valid @RequestBody StudyTaskDto studyTaskDto) {
         StudyTaskDto createdTask = studyTaskService.createStudyTask(studyTaskDto);
         return new ResponseEntity<>(createdTask, HttpStatus.CREATED);
     }
 
-
     @PutMapping("/{id}")
-    public ResponseEntity<StudyTaskDto> updateStudyTask(@PathVariable UUID id, @RequestBody StudyTaskDto studyTaskDto) {
+    public ResponseEntity<StudyTaskDto> updateStudyTask(@PathVariable UUID id, @Valid @RequestBody StudyTaskDto studyTaskDto) {
         StudyTaskDto updatedTask = studyTaskService.updateStudyTask(id, studyTaskDto);
         return ResponseEntity.ok(updatedTask);
     }
-
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteStudyTask(@PathVariable UUID id) {

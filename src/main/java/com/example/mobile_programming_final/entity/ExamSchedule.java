@@ -1,17 +1,19 @@
 package com.example.mobile_programming_final.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import lombok.Data;
+import jakarta.persistence.Id;
+import lombok.AccessLevel;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 
 @Entity
-@Data
-@NoArgsConstructor
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class ExamSchedule {
 
     @Id
@@ -33,12 +35,6 @@ public class ExamSchedule {
         this.registrationDate = registrationDate;
     }
 
-    /**
-     * DTO -> 엔티티 상태 업데이트 메서드
-     * @param name 업데이트할 시험 이름
-     * @param examDate 업데이트할 시험 날짜
-     * @param registrationDate 업데이트할 등록 날짜
-     */
     public void update(String name, LocalDate examDate, LocalDate registrationDate) {
         this.name = name;
         this.examDate = examDate;
